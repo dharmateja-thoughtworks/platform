@@ -20,4 +20,12 @@ jobs:
           role-to-assume: arn:aws:iam::160071257600:role/dev-github-actions-role
           aws-region: us-east-1
 
+      - name: Update Kubeconfig
+        run: |
+          aws eks update-kubeconfig --name dev-my-eks-cluster --region us-east-1
+
+      - name: Test kubectl access
+        run: |
+          kubectl get nodes
+
       
