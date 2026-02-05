@@ -1,0 +1,22 @@
+on:
+  workflow-dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy-argocd:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::160071257600:role/GitHubActionsRole
+          aws-region: us-east-1
+
+      

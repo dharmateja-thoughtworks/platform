@@ -18,3 +18,7 @@ output "private_subnets" {
 output "public_subnets" {
   value = module.vpc.public_subnet_ids
 }
+
+output "github_oidc_provider_role_arn" {
+  value = module.eks.github_role_arn
+}

@@ -22,4 +22,5 @@ variable "subnet_ids" {
 variable "github_repo" {
   description = "The GitHub repository in 'owner/repo' format (e.g., 'yourname/my-eks-project')"
   type        = string
+  default = "dharmateja-thoughtworks/platform"
 }
