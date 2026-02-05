@@ -1,0 +1,7 @@
+terraform {
+  backend "s3" {
+    # Backend configuration is provided via -backend-config flags or backend config file
+    # See: https://developer.hashicorp.com/terraform/language/settings/backends/configuration
+    # Initialize with: terraform init -backend-config="backend-config.hcl"
+  }
+}
