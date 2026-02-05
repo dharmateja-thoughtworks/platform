@@ -1,6 +1,6 @@
 name: Install ArgoCD
 on:
-  workflow-dispatch:
+  workflow_dispatch:
 
 permissions:
   contents: read
