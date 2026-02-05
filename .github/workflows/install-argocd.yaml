@@ -28,4 +28,21 @@ jobs:
         run: |
           kubectl get nodes
 
+      - name: Install ArgoCD via Helm
+        run: |
+          # 1. Create Namespace (if not exists)
+          kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
+          
+          # 2. Add Helm Repo
+          helm repo add argo https://argoproj.github.io/argo-helm
+          helm repo update
+          
+          # 3. Install ArgoCD
+          # We set service.type=LoadBalancer so you can access the UI easily
+          helm upgrade --install argocd argo/argo-cd \
+            --namespace argocd \
+            --version 5.46.7 \
+            --set server.service.type=LoadBalancer \
+            --set server.insecure=true
+
       
