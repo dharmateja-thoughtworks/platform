@@ -11,8 +11,8 @@ provider "kubernetes" {
   token                  = data.aws_eks_cluster_auth.main.token
 }
 
-# Update aws-auth ConfigMap to allow GitHub Actions role access
-resource "kubernetes_config_map" "aws_auth" {
+# Update existing aws-auth ConfigMap to allow GitHub Actions role access
+resource "kubernetes_config_map_v1_data" "aws_auth" {
   metadata {
     name      = "aws-auth"
     namespace = "kube-system"
@@ -39,5 +39,6 @@ resource "kubernetes_config_map" "aws_auth" {
     ))
   }
 
+  force = true
   depends_on = [aws_eks_cluster.main, aws_iam_role.github_actions]
 }
