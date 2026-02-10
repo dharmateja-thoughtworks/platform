@@ -35,6 +35,15 @@ resource "kubernetes_config_map_v1_data" "aws_auth" {
           username = "github-actions"
           groups   = ["system:masters"]  # Full cluster admin access for GitHub Actions
         }
+      ] : [],
+
+      # GitLab CI Role
+      aws_iam_role.gitlab_ci.arn != "" ? [
+        {
+          rolearn  = aws_iam_role.gitlab_ci.arn
+          username = "gitlab-ci"
+          groups   = ["system:masters"]  # Full cluster admin access for GitLab CI
+        }
       ] : []
     ))
   }

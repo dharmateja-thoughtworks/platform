@@ -22,3 +22,7 @@ output "public_subnets" {
 output "github_oidc_provider_role_arn" {
   value = module.eks.github_role_arn
 }
+
+output "gitlab_oidc_provider_role_arn" {
+  value = module.eks.gitlab_role_arn
+}
